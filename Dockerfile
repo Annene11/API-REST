@@ -6,7 +6,7 @@ FROM python:3.10-slim
 WORKDIR /app
 
 # Copiar archivos de requerimientos y código
-COPY ./venv/api-productos/ ./
+COPY ./api/ ./
 
 # Instalar dependencias
 RUN pip install --no-cache-dir fastapi uvicorn asyncpg python-dotenv
