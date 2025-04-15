@@ -1,3 +1,4 @@
+
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
@@ -43,10 +44,8 @@ class Producto(BaseModel):
 @app.on_event("startup")
 async def startup():
     global conn
-    ssl_context = ssl.create_default_context()
-    ssl_context.check_hostname = False
-    ssl_context.verify_mode = ssl.CERT_NONE
-    conn = await asyncpg.connect(DATABASE_URL, ssl=ssl_context)
+    # Conexión sin configuración SSL personalizada para evitar problemas
+    conn = await asyncpg.connect(DATABASE_URL)
 
 @app.on_event("shutdown")
 async def shutdown():
